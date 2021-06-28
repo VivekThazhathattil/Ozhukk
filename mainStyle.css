@@ -41,7 +41,7 @@ main{
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
-	min-width: 10vw;
+	min-width: 20vw;
 	height: 50vh;
 	margin-left: 10px;
 	overflow-x: auto;
@@ -52,4 +52,17 @@ main{
 .flowcard{
 	margin: 5px;
 	padding: 5px;
+}
+
+@media only screen and (max-width: 850px){
+	#flowtypes-container{
+		flex-direction: row;
+		height: auto;
+	}
+	main{
+		flex-direction: column;
+	}
+	#flow-canvas-container{
+		flex-direction: column;
+	}
 }

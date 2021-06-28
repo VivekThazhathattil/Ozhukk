@@ -4,8 +4,10 @@ let particleArr = []; // change this!
 const FPS = 60;
 const SCREEN_TIME_LIMIT = 500;
 let intervId;
+let module = "";
 
 function runPoiseulle(){
+	module = "poiseulle";
 	init();
 	let {ctx, canvas} = getCtxCanvas();
 	ctx.save(); // save the current state of the context
@@ -21,6 +23,7 @@ function runPoiseulle(){
 	intervId = setInterval(drawPoiseulle, 1000 / FPS);
 }
 function runCouette(){
+	module = "couette";
 	init();
 	let {ctx, canvas} = getCtxCanvas();
 	ctx.save();
@@ -33,8 +36,8 @@ function init(){
 	clearInterval(intervId);
 	particleArr = [];
 
-	const width 	= "500";
-	const height 	= "500";
+	const width 	= $(window).width() * 0.5;
+	const height 	= $(window).height()/2;
 	removeAllCanvases();
 	prependCanvasToFlowCanvasContainer(width, height);
 	showAllSliders();
@@ -196,7 +199,14 @@ function drawCouette(){
 $(document).ready( () => {
 	$("#pressure-range").change( () => {
 		clearInterval(intervId);
-		runPoiseulle();
+		switch(module){
+			case "poiseulle":
+				runPoiseulle();
+				break;
+			case "couette":
+				runCouette();
+				break;
+		}	
 	});
 });
 
